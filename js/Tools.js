@@ -1,96 +1,130 @@
-var getProCenter=function(){
-	//province,center
-	var array={};
-	array["安徽"]="合肥";
-	array["北京"]="海淀";
-	array["重庆"]="渝中";
-	array["福建"]="福州";
-	array["甘肃"]="兰州";
-	array["广东"]="广州";
-	array["广西"]="南宁";
-	array["贵州"]="贵阳";
-	array["海南"]="海口";
-	array["河北"]="保定";
-	array["黑龙江"]="哈尔滨";
-	array["河南"]="郑州";
-	array["香港"]="九龙";
-	array["湖北"]="武汉";
-	array["湖南"]="长沙";
-	array["江苏"]="南京";
-	array["江西"]="南昌";
-	array["吉林"]="长春";
-	array["辽宁"]="沈阳";
-	array["内蒙古"]="呼和浩特";
-	array["宁夏"]="银川";
-	array["青海"]="西宁";
-	array["山西"]="太原";
-	array["陕西"]="西安";
-	array["山东"]="济南";
-	array["四川"]="成都";
-	array["台湾"]="高雄";
-	array["上海"]="黄埔";
-	array["天津"]="天津";
-	array["新疆"]="乌鲁木齐";
-	array["西藏"]="拉萨";
-	array["云南"]="昆明";
-	array["浙江"]="杭州";
-	array["港澳"]="港澳";
-	return array;
+var rankings={};
+var colors={};	
+var outprovince;//globa variable
+var width=500;
+var height=350;
+var psvg=function(){
+	var svg3=d3.select("body div.detail")
+				.append("svg")
+				.attr("width",width)
+				.attr("height",height)
+				.style("border-radius","5px")
+				.style("background-color","#c8d9eb");
+	return svg3;
 }
-//本来想转化成为汉字的,但是下面的市级名称太多怕对应不过来.不转也能正常读取不过变成不是很规范
-
-var colorsArray=function(){
-	//存储10种颜色 降序排列
-	var colors=[];
-	colors.push("#030c44");
-	colors.push("#040f58");
-	colors.push("#071888");
-	colors.push("#0a1ea4");
-	colors.push("#0d25bf");
-	colors.push("#122cd9");
-	colors.push("#6b7def");
-	colors.push("#8694ee");
-	colors.push("#1fdbef");
-	colors.push("#86e9f4");
-	//存储十种颜色 颜色深度依次递减
-	return colors;
+var province=psvg();
+var detail_map=province.append("g")
+				.attr("id","detail_map")
+				.attr("stroke","white")
+				.attr("stroke-width",1);
+var getProColor=function(cityname){
+	
+	for(var i=0;i<rankings.length;i++){
+		if(rankings[i].incity==cityname){
+			return colors[i];
+		}
 	}
-var drawCurveLine=function(mline,startpoint,endpoint,color,width,temid){
-			  
-				    var qx=0.5*(endpoint[0]-startpoint[0]);
+	//黑色的区域表示
+	return "#e5f5e0";//否则的话返回纯绿色
+}
+var querySelect=function(inpro,outpro,mapdata,x,y){
+			$.ajax({
+				  type:"post",
+					url:"/getcityrank",
+					data:{
+						"inpro":inpro,
+						"outpro":outpro
+					},
+					async:true,
+					dataType:"json",
+					success:function(data){
+						rankings=data;
+					  colors=colorsArray2(rankings);
+						console.log(colors);
+						drawDetailMap(mapdata,x,y);
+					},
+					error:function(err){
+						console.log("error"+err.message);
+					}
+			});
+		}
+var getlinecolor=function(key,line){
+	var r=0;
+	var g=0;
+	var b=0;
+
+	var tem=d3.scale.linear();
+	    tem.domain([0,1])
+			   .range([0,1]);
+				 // r=tem(key);
+				 // g=tem(key);
+				 b=tem(key);
+	var color="rgb("+r+","+g+","+b+")";
+	return color;
+}
+var drawCurveLine=function(mline,startpoint,endpoint,key,outpro,lines){
+	       //为前5名设置线的宽度为2
+				 var key=parseInt(key);
+				// console.log("key"+key);
+				console.log(endpoint);
+				 var width=1;
+				 var color="";
+				 var ratio=0;
+				 var baohedu=1;
+				 ratio=parseFloat(key/lines);
+				 var radius=140*(Math.PI/180);
+				 //console.log(ratio);
+				 var tem=HSVtoRGB(radius,baohedu,1-ratio);
+				 // color="rgb("+tem.r+","+tem.g+","+tem.b+")";
+				 
+				  if(Math.abs(ratio)<=parseFloat(0.20)){
+						width=3.5;
+						var tem=HSVtoRGB(radius,baohedu,1);
+						// color="rgb("+tem.r+","+tem.g+","+tem.b+")";
+						color="#fc4e2a";
+					}else if(parseFloat(0.20)<ratio&&ratio<=parseFloat(0.5)){
+						//console.log("second");
+						width=3.5;
+						var tem=HSVtoRGB(radius,baohedu,0.7);
+						// color="rgb("+tem.r+","+tem.g+","+tem.b+")";
+						color="#fd8d3c";
+					}else if(parseFloat(0.5)<ratio&&ratio<=parseFloat(0.8)){
+						//console.log("third");
+						width=3.5;
+						var tem=HSVtoRGB(radius,baohedu,0.5);
+						// color="rgb("+tem.r+","+tem.g+","+tem.b+")";
+						color="#feb24c";
+					}else{
+						//console.log("fourth");
+						width=3.5;
+						var tem=HSVtoRGB(radius,baohedu,0.3);
+						// color="rgb("+tem.r+","+tem.g+","+tem.b+")";
+						color="#fed976";
+					}
+					drawCircle(endpoint[0],endpoint[1],color);
+					width=1;
+	        outprovince=outpro;
+				  var qx=0.5*(endpoint[0]-startpoint[0]);
 					var qy=0*(Math.abs(startpoint[1]-endpoint[1]));
 					var endx=endpoint[0]-startpoint[0];
 					var endy=endpoint[1]-startpoint[1];
+					
+					// console.log(color);
+					var temid="tem"+key;
 					//d使用小写的q代表的是相对坐标
 					var d="M "+startpoint[0]+","+startpoint[1]+" q "+qx+","+qy+" "+endx+","+endy;
-				    //console.log(d);
-					
-					
-                    //使用三条线来实现追踪效果 待会再搞一下动画效果 ，逆天可爱有木有
-				    mline.append("path")
-					        .attr("class","line")
+				   mline.append("path")
+					    .attr("class","line")
 							.attr("id",temid)
 							.attr("d",d)
 							.attr("fill","transparent")
 							.attr("stroke",color)
-							.attr("stroke-width",2);
-							
-							
-// 					mline.append("path")
-// 							 .attr("class","line1")
-// 							 .attr("d",d)
-// 							 .attr("fill","transparent")
-// 							 .attr("stroke","#ff2851")
-// 							 .attr("stroke-width","2");
-// 							 
-// 					mline.append("path")
-// 						 .attr("class","line2")
-// 						 .attr("d",d)
-// 						 .attr("fill","transparent")
-// 						 .attr("stroke","#000000")
-// 						 .attr("stroke-width","2");
+							.attr("stroke-width",width);
 
-					// var route=document.querySelector(".route");
+
+
+           width=0;
+					 color="";
 					var route=document.querySelector("#"+temid);
 					var length=route.getTotalLength();
 					//this code clear all the transition effect before this item 
@@ -117,8 +151,8 @@ var drawCurveLine=function(mline,startpoint,endpoint,color,width,temid){
 						 .attr("x",endpoint[0]+10)
 						 .attr("y",endpoint[1]+10)
 						 .style("font-size","10px")
-						 .attr("stroke","red")
-						 .attr("stroke-width",0.5)
+ 						 .attr("stroke","#cb181d")
+// 					 .attr("stroke-width",1)
 						 .text(text);
 					
 					
@@ -126,9 +160,10 @@ var drawCurveLine=function(mline,startpoint,endpoint,color,width,temid){
 var graph=function(){
 	var width=900;
 	var height=700;
-	var background="#0b032d"; 
+	var background="#020814"; 
 	var svg=d3.select("body div.fxmap")
 				.append("svg")
+				.attr("stroke","#00bcd4")
 				.attr("width",width)
 				.attr("height",height)
 				.attr("right","0")
@@ -136,7 +171,7 @@ var graph=function(){
     return svg;				
 }		
 var leftSvg=function(){
-	var width=350;
+	var width=500;
 	var height=650;
 	var svg2=d3.select("body div.prank")
 				.append("svg")
@@ -147,28 +182,88 @@ var leftSvg=function(){
 				.style("opacity","1");
 	return svg2;			
 }	
-		
-		var width=500;
-		var height=350;
-var psvg=function(){
-	var svg3=d3.select("body div.detail")
-				.append("svg")
-				.attr("width",width)
-				.attr("height",height)
-				.style("border-radius","5px")
-				.style("background-color","#c8d9eb");
-	return svg3;
-}
-var province=psvg();
-var detail_map=province.append("g")
-				.attr("id","detail_map")
-				.attr("stroke","white")
-				.attr("stroke-width",1);
-var colors=colorsArray();						
+var drawDetailMap=function(data,x,y){
+	
+	var cities=[];
+	for(var i=0;i<data.length;i++){
+		cities.push(
+		{
+			"lat":data[i].properties.cp[0],
+			"log":data[i].properties.cp[1],
+			"name":data[i].properties.name
+		}
+		);
+	}
+	var item=parseInt(data.length/2);
+	var centerpoint=getCenterPoint(cities);
+	var scaletime=getScaleTimes(cities);
+	
+	var dp =
+	d3.geo.mercator()
+	.center([centerpoint[0].lat,centerpoint[0].log])
+	.scale(scaletime)
+	.translate([x, y]);
+	
+	var dpath = d3.geo.path().projection(dp);
+	   //绘制地图
+	detail_map.selectAll("path")
+				.data(data)
+				.enter()
+				.append("path")
+				.attr("fill",function(d,i){
+					return getProColor(d.properties.name);
+				})
+				.attr("d",dpath)
+				.on("mouseover",function(){
+					d3.select(this).attr("class","orange");
+				})
+				.on("mouseout",function(){
+					d3.select(this).attr("class","");
+				});
+	  //在地图上面标注市信息
+		var location=province.selectAll("location")
+							.data(cities)
+							.enter()
+							.append("g")
+							.attr("class","info")
+							.attr("transform",function(d){
+								//计算标注点位置
+								var coor=dp([d.lat,d.log]);
+								return "translate("+coor[0]+","+coor[1]+")";
+							});
+							
+			location.append("circle")
+					.attr("r",3)
+					.style("fill",function(d,i){
+						return "#ea9c1b";
+					});	 
+			location.append("text")
+					.text(function(d){
+						return d.name;
+					})
+					.attr("fill",function(d,i){
+						return "pink";
+					})
+					.attr("text-anchor","middle")
+					.attr("font-family","sans-setif")
+					.attr("font-size","10px")
+					.attr("font-weight","250")
+					.on("mouseover",function(d){
+						//字体放大
+					d3.select(this).attr("font-size","20px")
+													.attr("font-weight","bold")
+													.attr("fill","black");
+					})
+					.on("mouseout",function(){
+						d3.select(this).attr("font-size","10px")
+													.attr("font-weight","250")
+													.attr("fill","#ea9c1b");
+				});
+					
+	}			
 var drawLeft=function(dataset,container){
-	//pro:  , targo:
-	var width=350,
-	    leftMargin=0,
+var width=500,
+	  leftMargin=0,
 		topMargin=10,
 		barHeight=15,
 		barGap=4,
@@ -181,11 +276,8 @@ var drawLeft=function(dataset,container){
 				      .range([0,width]);
 		var barGroup=container.append("g")
 			           .attr("transform",translateText)
-							   .attr("class","bar");
-			//前三名使用红色
-			//中间使用浅红色					
-							  
-	        barGroup.selectAll("rect")
+							   .attr("class","bar");							  
+	  barGroup.selectAll("rect")
 					.data(dataset)
 					.enter()
 					.append("rect")
@@ -206,81 +298,44 @@ var drawLeft=function(dataset,container){
 						}
 					})
 					.on("click",function(d){
+						var yalias=175;
+						var xalias=250;
 						//显示到具体的市级单位 以市级单位的第一个区为中心绘制具体地图
+						if(d3.select(this).attr("id")=="钓鱼岛"){
+							//直接显示钓鱼岛的tcargo是多少
+							alert("钓鱼岛地图尚未完备，请选看其余省份");
+							}
+						  //台湾
+							if(d3.select(this).attr("id")=="台湾"){
+								alert("数据库未提供准确的省市分布数据");
+							}
+						if(d3.select(this).attr("id")=="江西"){
+							yalias=100;
+							}
+						if(d3.select(this).attr("id")=="黑龙江"){
+								yalias=200;
+							}
+							if(d3.select(this).attr("id")=="青海"){
+								xalias=300;
+							}
+							if(d3.select(this).attr("id")=="重庆"){
+								xalias=200;
+							}
 						var pname=getPinyin(d3.select(this).attr("id"));
+						var chinese=d3.select(this).attr("id");
 						var path="./data/local/"+pname+".json";
-						var mapdata=[];
-						var cities=[];
+					  var mapdata=[];
 						//清除掉之前显示的detail地图
-					    province.selectAll(".info").remove();
+					  province.selectAll(".info").remove();
 						detail_map.selectAll("*").remove();
+						
 						d3.json(path,function(error,data){
-							//绘制地图
+							//根据货运量绘制地图 以及着色
 							if(error){
 								console.log(error);
 							}
-						    mapdata=data.features;
-							
-							for(var i=0;i<mapdata.length;i++){
-								cities.push(
-								{
-									"lat":mapdata[i].properties.cp[0],
-									"log":mapdata[i].properties.cp[1],
-									"name":mapdata[i].properties.name
-								}
-								);
-							}
-							 var item=parseInt(mapdata.length/2);
-							 var centerpoint=getCenterPoint(cities);
-							 var scaletime=getScaleTimes(cities);
-							 console.log(scaletime+"scaletime");
-							 console.log(centerpoint+"centerpoint");
-							 var dp =
-							 d3.geo.mercator()
-							.center([centerpoint[0].lat,centerpoint[0].log])
-							.scale(scaletime)
-							.translate([province.attr("width")/2, province.attr("height")/1.85]);
-							
-							var dpath = d3.geo.path().projection(dp);
-							var color=d3.scale.category20();
-							//"#add2c9"
-							//在地图上面标记名称 并且根据货运量绘制不同的颜色
-							detail_map.selectAll("path")
-									.data(mapdata)
-									.enter()
-									.append("path")
-									.attr("fill",function(d,i){
-										return color(i);
-									})
-									.attr("d",dpath);
-									
-							var location=province.selectAll("location")
-												 .data(cities)
-												 .enter()
-												 .append("g")
-												 .attr("class","info")
-												 .attr("transform",function(d){
-													 //计算标注点位置
-													 var coor=dp([d.lat,d.log]);
-												   return "translate("+coor[0]+","+coor[1]+")";
-												 });
-												 
-								location.append("circle")
-										.attr("r",3)
-										.style("fill",function(d,i){
-											return "black";
-										});	 
-								location.append("text")
-										.text(function(d){
-											return d.name;
-										})
-										.attr("fill",function(d,i){
-											return "black";
-										})
-										.attr("text-anchor","middle")
-										.attr("font-family","sans-setif")
-										.attr("font-size","10px")
-										.attr("font-weight","250");
+						  mapdata=data.features;
+							querySelect(chinese,outprovince,mapdata,xalias,yalias);
 						});
 						
 					});
@@ -289,18 +344,75 @@ var drawLeft=function(dataset,container){
 									.attr("transform",translateText)
 									.attr("class","bar-label");
 									
-			barLabelGroup.selectAll("text")
+			     barLabelGroup.selectAll("text")
 									.data(dataset)
 									.enter()
 									.append("text")
 									.style("stroke","white")
+									.attr("province",function(d){
+										return d.pro;
+									})
+									.attr("class","pointer")
 									.attr("fill","white")
 									.attr("x",20)
 									.attr("y",function(d){return d.position*barSpacing+barHeight*(2/3)})
-                  .text(function(d){return d.pro+"   "+parseInt(parseInt(d.position)+1)});
-		  
-							  
-}
+                  .text(function(d){
+										var text="";
+										if(d.pro=="钓鱼岛"||d.pro=="台湾"){
+											text=parseInt(parseInt(d.position)+1)+" "+d.pro+"  "+(d.tcargo+"").substr(0,5);
+											}
+											else{
+											text=parseInt(parseInt(d.position)+1)+" "+d.pro+"  "+(d.tcargo+"").substr(0,5);
+											}
+										return text;
+										})
+									.on('click',function(d){
+											//redraw map in the left bottom
+											var yalias=175;
+											var xalias=250;
+											//显示到具体的市级单位 以市级单位的第一个区为中心绘制具体地图
+											if(d3.select(this).attr("province")=="钓鱼岛"){
+												//直接显示钓鱼岛的tcargo是多少
+												alert("钓鱼岛地图尚未完备，请选看其余省份");
+												return;
+												}
+												//台湾
+												if(d3.select(this).attr("province")=="台湾"){
+													alert("数据库未提供准确的省市分布数据");
+													return ;
+												}
+											if(d3.select(this).attr("province")=="江西"){
+												yalias=100;
+												}
+											if(d3.select(this).attr("province")=="黑龙江"){
+													yalias=200;
+												}
+												if(d3.select(this).attr("province")=="青海"){
+													xalias=300;
+												}
+												if(d3.select(this).attr("province")=="重庆"){
+													xalias=200;
+												}
+											var pname=getPinyin(d3.select(this).attr("province"));
+											var chinese=d3.select(this).attr("province");
+											var path="./data/local/"+pname+".json";
+											var mapdata=[];
+											//清除掉之前显示的detail地图
+											province.selectAll(".info").remove();
+											detail_map.selectAll("*").remove();
+											
+											d3.json(path,function(error,data){
+												//根据货运量绘制地图 以及着色
+												if(error){
+													console.log(error);
+												}
+												mapdata=data.features;
+												querySelect(chinese,outprovince,mapdata,xalias,yalias);
+										  });			
+														
+														
+                    });
+										}
 var getCenterPoint=function(array){
 	//Get the center point of an array 
 	//decide the scale parameter dynamically
@@ -312,19 +424,25 @@ var getCenterPoint=function(array){
 		sum1+=parseFloat(array[i].lat);
 		sum2+=parseFloat(array[i].log);
 	}
-	console.log(sum1+"  "+sum2);
 	center.push(
 	{
 		"lat":parseFloat(sum1/size),
 		"log":parseFloat(sum2/size)
 	}
 	);
-	console.log(center);
 	return center;
 }
-
 var getScaleTimes=function(array){
-	//width 500 height 350
+	//console.log(array);
+	var times=27;
+	//判断是否是重庆
+	if(array[1].name=="奉节县"){
+		//是重庆地区
+		times=42;
+		}
+		if(array[1].name=="和田地区"){
+			times=33;
+		}
 	var maxx=0,minx=10000,maxy=0,miny=10000;
 	for(var i=0;i<array.length;i++){
 		if(minx>array[i].lat){
@@ -343,123 +461,6 @@ var getScaleTimes=function(array){
 	var disx=maxx-minx;
 	var disy=maxy-miny;
 	var time1=parseInt(500/disx);
-	var time2=parseInt(350/disy);
-	return  time1<time2?28*time1:28*time2;
-}
-
-
-var getPinyin=function(name){
-	var res="";
-	switch(name){
-	case "重庆":
-	     res="chongqing";
-		 break;
-    case "海南":
-	     res="hainan";
-		 break;
-	case "广东":
-	     res="guangdong";
-		 break;
-	case "上海":
-		 res="shanghai";
-		 break;
-	case "内蒙古":
-		 res="neimenggu";
-		 break;
-    case "河南":
-		 res="henan";
-		 break;
-	case "甘肃":
-		 res="gansu";
-		 break;
-	case "广西":
-	     res="guangxi";
-		 break;
-	case "山东":
-	      res="shandong";
-		  break;
-	case "安徽":
-		  res="anhui";
-		  break;
-	case "天津":
-		  res="tianjin";
-		  break;
-	case "辽宁":
-		  res="liaoning";
-		  break;
-	case "云南":
-		  res="yunnan";
-		  break;
-	case "山西":
-		  res="shan1xi";
-		  break;
-	case "黑龙江":
-		  res="heilongjiang";
-		  break;
-	case "北京":
-		  res="beijing";
-		  break;
-	case "河北":
-		  res="hebei";
-		  break;
-	case "港澳":
-		  res="macau";
-		  break;
-    case "宁夏":
-		  res="ningxia";
-		  breakk;
-	case "青海":
-		  res="qinghai";
-		  break;
-	case "四川":
-		  res="sichuan";
-		  break;
-	case "广东":
-		  res="guangdong";
-		  break;
-	case "陕西":
-		   res="shan3xi";
-		   break;
-	case "吉林":
-		   res="jilin";
-		   break;
-	case "浙江":
-		   res="zhejiang";
-		   break;
-	case "西藏":
-		   res="xizang";
-		   break;
-	case "新疆":
-		   res="xinjiang";
-		   break;
-	case "台湾":
-		   res="taiwan";
-		   break;
-	case "青海":
-		   res="qinghai";
-		   break;
-	case "江西":
-		   res="jiangxi";
-		   break;
-	case "湖南":
-		   res="hunan";
-		   break;
-	case "湖北":
-		   res="hubei";
-		   break;
-	case "贵州":
-		   res="guizhou";
-		   break;
-	case "福建":
-		   res="fujian";
-		   break;
-	case "北京":
-		   res="beijing";
-		   break; 
-	case "江苏":
-				res="jiangsu";
-				break;
-		  }
-		  //港澳按照澳门来处理了~
-	return res;	  
+	var time2=parseInt(320/disy);
+	return  time1<time2?times*time1:times*time2;
 }

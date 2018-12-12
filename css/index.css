@@ -1,0 +1,73 @@
+		body{
+			text-align: center;
+			background-color: #020814;
+			overflow: hidden; 
+		}
+		.shanghai{
+			width: 50px;
+			height: 50px;
+			border-radius: 100%;
+			border: white 2px;
+			background-color: aquamarine;
+			position: fixed;
+			top:0px;
+			right:0px;
+			z-index: 100;
+			color: white;
+			line-height: 50px;
+			height: 50px;
+			cursor: pointer;
+		}
+		.shanghai:hover{
+			background-color: darkorange;
+			font-size: 20px;
+			font-weight: 300;
+			border-width: 5px;
+			border-color: aqua;
+		}
+		.fxmap{
+			width: 900px;
+			height: 700px;
+			position: fixed;
+			top:0px;
+			right: 50px;
+			cursor: pointer;
+		}
+		.prank{
+			position: fixed;
+			width: 500px;
+			height: 280px;
+			border-radius: 10px;
+		    top:20px;
+			left: 0px;
+			overflow-y: auto;
+			/* background-color: pink; */
+			margin-bottom: 10px;
+			padding: 0px;
+			text-align: left;
+		}
+		.rect{
+			cursor: pointer;
+		}
+		.detail{
+			width: 500px;
+			height: 350px;
+			/* background-color: #5ea3a3; */
+			position: fixed;
+		  top:300px;
+			left: 0px;
+			border-radius: 3px;
+			cursor: pointer;
+			background-color: #0B032D;
+			}
+
+    ::-webkit-scrollbar {
+        width: 0px; /*滚动条的宽度*/
+         height: 8px; /*滚动条的高度*/
+      }
+    .orange{
+		/* fill:orangered; */
+	  }
+	   .pointer{
+			 cursor: pointer;
+		 }

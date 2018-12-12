@@ -4,12 +4,14 @@ var cargolinks={};
 //创建svg
 var width=1000;
 var height=700;
-var background="#0b032d"; 
+var background="#020814"; 
 var svg=graph();//地图主体
 var svg2=leftSvg();	//left svg		
 var gmap = svg.append("g")
+        .attr("width",width)
+				.attr("height",height)
 				.attr("id", "map")
-				.attr("stroke", "white")
+				.attr("stroke", "#00bcd4")
 				.attr("stroke-width",1);
 				
 //mline的笔宽度和颜色待定 group
@@ -31,7 +33,7 @@ var mline =svg.append("g")
 var projection = d3.geo.equirectangular()
                             .center([465,395])  // 指定投影中心，注意[]中的是经纬度
                             .scale(height/0.9)
-                            .translate([width / 2.1, height / 2]);
+                            .translate([width / 2, height / 2]);
 var path = d3.geo.path().projection(projection);
 
 //创建marker标记，以便多个中点连线调用
@@ -79,22 +81,24 @@ var marker=svg.append("defs")
 				.attr("fill",background)
 				.on("mouseover",function(d,i){
 					   d3.select(this)
-					  .attr("fill","#f79f24");
+					  .attr("fill","#00bcd4")
+						.attr("fill-opacity",0.2)
+						;
 				})
 				.on("mouseout",function(d,i){
 					   d3.select(this)
-					  .attr("fill",background);
+					  .attr("fill",background)
+						.attr("fill-opacity",1)
+						;
 				})
 				.on("click",function(d,i){
-					//console.log(cargolinks[d.properties.name]);
+					// console.log(d.properties.name);
 					var exp=cargolinks[d.properties.name].exp;
-					//获取该省份的经纬度坐标
+					//获取该省份市中心
 					var sx=centers[procenter[d.properties.name]].x;
 					var sy=centers[procenter[d.properties.name]].y;
 					//sort exp by sortFunction
 					var key=0;
-					//console.log(exp);
-					//清除所有已经绘制的line 和text
 					mline.selectAll(".line").remove();
 					mline.selectAll(".text").remove();
 					//清除已经有的svg2的部分
@@ -103,9 +107,8 @@ var marker=svg.append("defs")
 					var dexp=Object.keys(exp).sort(function(a,b){
 						return exp[b]-exp[a];
 					});
-					//console.log(dexp);
-					//create key:value for left svg data source
 					var dataset=[];
+					// console.log(dexp);
 					for(var keys in dexp )
           {
 						dataset.push(
@@ -113,12 +116,19 @@ var marker=svg.append("defs")
 						"pro":dexp[keys],
 						"tcargo":exp[dexp[keys]],
 						"position":key
-						}
-						);
+						});
+						// .log(exp[dexp[keys]]); 江苏有运往钓鱼岛的货物没法画出来
 						key++;
-						var ex=centers[procenter[dexp[keys]]].x;
-						var ey=centers[procenter[dexp[keys]]].y;
-						drawCurveLine(mline,projection([sx,sy]),projection([ex,ey]),"#ffb4ac",1.5,"tem"+key);
+						var ex=0;
+						var ey=0;
+						if(dexp[keys]=="钓鱼岛"){
+							   ex=123.284;
+								 ey=25.446;
+							}else{
+							ex=centers[procenter[dexp[keys]]].x;
+						  ey=centers[procenter[dexp[keys]]].y;
+							}
+						drawCurveLine(mline,projection([sx,sy]),projection([ex,ey]),key,d.properties.name,dexp.length);
 					}					
 					key =0;
 					drawLeft(dataset,svg2);
@@ -126,16 +136,18 @@ var marker=svg.append("defs")
 				.attr("d", path);
         });
 		
-		var drawCircle=function(x,y){		
+		var drawCircle=function(x,y,color){		
 			gmap.append("circle")
 			     .attr("class","province")
 			     .attr("cx",x)
 				   .attr("cy",y)
 				   .attr("r",4)
-				   .attr("fill","yellow");
+					 .attr("stroke",color)
+				   .attr("fill",color);
 				 
 			gmap.append("circle")
 			     .attr("class","cirout")
+					 .attr("stroke",color)
 				   .attr("cx",x)
 				   .attr("cy",y)
 				   .attr("r",7)
@@ -146,7 +158,7 @@ var marker=svg.append("defs")
 			for (var i = 0; i < data.length; i++) {
 				centers[data[i].name]={"x":data[i].x,"y":data[i].y};
 				var itempro=projection([data[i].x,data[i].y]);
-				drawCircle(itempro[0],itempro[1]);
+				drawCircle(itempro[0],itempro[1],"#feb24c");
 			}
 		});
 		
@@ -190,12 +202,14 @@ var marker=svg.append("defs")
 						
 						
 					}
-				  console.log(cargolinks);
+				//  console.log(cargolinks);
 				});
+
 
 	    	var scale = d3.scale.linear();
         scale.domain([0, 1000, 2000])
             .range([0, 1, 0]);
+						
         var start = Date.now();
 		
         d3.timer(function(){
@@ -207,3 +221,47 @@ var marker=svg.append("defs")
 				         .attr("stroke-opacity",s1);
 				
         });
+				d3.select(".shanghai").on("click",function(){
+					//draw curverline
+					// console.log(d.properties.name);
+
+					var exp=cargolinks["上海"].exp;
+					//获取该省份市中心
+					var sx=centers[procenter["上海"]].x;
+					var sy=centers[procenter["上海"]].y;
+					//sort exp by sortFunction
+					var key=0;
+					mline.selectAll(".line").remove();
+					mline.selectAll(".text").remove();
+					//清除已经有的svg2的部分
+					svg2.selectAll("g").remove();
+					
+					var dexp=Object.keys(exp).sort(function(a,b){
+						return exp[b]-exp[a];
+					});
+					var dataset=[];
+					// console.log(dexp);
+					for(var keys in dexp )
+					{
+						dataset.push(
+						{
+						"pro":dexp[keys],
+						"tcargo":exp[dexp[keys]],
+						"position":key
+						});
+						// .log(exp[dexp[keys]]); 江苏有运往钓鱼岛的货物没法画出来
+						key++;
+						var ex=0;
+						var ey=0;
+						if(dexp[keys]=="钓鱼岛"){
+								ex=123.284;
+								ey=25.446;
+							}else{
+							ex=centers[procenter[dexp[keys]]].x;
+							ey=centers[procenter[dexp[keys]]].y;
+							}
+						drawCurveLine(mline,projection([sx,sy]),projection([ex,ey]),key,"上海",dexp.length);
+					}					
+					key =0;
+					drawLeft(dataset,svg2);
+				});

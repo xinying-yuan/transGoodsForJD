@@ -1,72 +1,30 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8" />
-		<title>京东物流可视化项目</title>
+		<meta charset="gb2312" />
+		<title>出口可视化</title>
+		<link href="css/index.css" charset="gb2312" rel="stylesheet" />
 	</head>
-	<style>
-		body{
-			text-align: center;
-			background-color: #0b032d;
-			overflow: hidden; 
-		}
-		.fxmap{
-			width: 900px;
-			height: 700px;
-			position: fixed;
-			top:0px;
-			right: 0px;
-			cursor: pointer;
-		}
-		.prank{
-			position: fixed;
-			width: 370px;
-			height: 300px;
-			border-radius: 10px;
-		    top:20px;
-			left: 10px;
-			overflow-y: auto;
-			/* background-color: pink; */
-			padding: 0px;
-			text-align: left;
-		}
-		.rect{
-			cursor: pointer;
-		}
-		.detail{
-			width: 500px;
-			height: 350px;
-			/* background-color: #5ea3a3; */
-			position: fixed;
-		    top:300px;
-			left: 0px;
-			border-radius: 3px;
-			cursor: pointer;
-			}
-
-    ::-webkit-scrollbar {
-        width: 0px; /*滚动条的宽度*/
-         height: 8px; /*滚动条的高度*/
-      }
-
-	</style>
 	<body>	
+	<!-- 小区域地方按钮 -->
+	<div class="shanghai">上海</div>
 	<!-- using d3 to draw a map of china   12/06 cassiel -->
 	<div class="fxmap">
-		
 	</div>
+	
 	<div class="prank">
 		<!-- 根据进出口货物结果给出各个省份的排名 -->
 		<!-- 点击排名可以查看具体的货运量 -->
-		
 	</div>
 	<!-- 具体省市的快递热力图 -->
 	<!-- 默认以省的第一个区cp为中心绘制 -->
 	<div class="detail">
+		
 	</div>
-	
 	</body>
-	<script type="application/javascript" src="libs/d3.js"></script>
-	<script type="application/javascript" src="js/Tools.js"></script>
-	<script type="application/javascript" src="js/index.js"></script>
+	<script type="application/javascript" src="js/jquery-3.3.1.js" charset="gb2312"></script>
+	<script type="application/javascript" src="libs/d3.js" charset="gb2312"></script>
+	<script type="application/javascript" src="js/OnceTools.js" charset="gb2312"></script>
+	<script type="application/javascript" src="js/Tools.js" charset="gb2312"></script>
+	<script type="application/javascript" src="js/index.js" charset="gb2312"></script>
 </html>
