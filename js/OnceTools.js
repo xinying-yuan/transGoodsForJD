@@ -10,7 +10,7 @@ var getProCenter=function(){
 	array["广西"]="南宁";
 	array["贵州"]="贵阳";
 	array["海南"]="海口";
-	array["河北"]="保定";
+	array["河北"]="石家庄市";
 	array["黑龙江"]="哈尔滨";
 	array["河南"]="郑州";
 	array["香港"]="九龙";
@@ -218,4 +218,52 @@ var colorsArray2 = function(data) {
 	}
 	return colors;
 }
+//按照给定的mincolor和 maxcolor 以及最终要得到的颜色个数 得到颜色数组
+//colors.length=input num 
+var colorsArray3=function(mincolor,maxcolor,num){
+	//mincolor and maxcolor rgb(r,g,b)
+	var tem1=mincolor.substring(4,mincolor.length-1);
+	var tem2=maxcolor.substring(4,maxcolor.length-1);
+	var min=tem1.split(",");
+	var max=tem2.split(",");
+	// console.log(min+"mincolor");
+	// console.log(max+"maxcolor");
+	//在rgb中value越小颜色越深
+	var colors=[];
+	var rscale=d3.scale.linear();
+	    rscale.domain([1,num])
+		      .range([parseFloat(max[0]),parseFloat(min[0])]);
+    var gscale=d3.scale.linear();
+    	gscale.domain([1,num])
+    		.range([parseFloat(max[1]),parseFloat(min[1])]);
+	var bscale=d3.scale.linear();
+		bscale.domain([1,num])
+		.range([parseFloat(max[2]),parseFloat(min[2])]);
+	
+	for(var i=0;i<num;i++){
+		var r=rscale(i+1);
+		var g=gscale(i+1);
+		var b=bscale(i+1);
+		var colortext="rgb("+r+","+g+","+b+")";
+		// console.log(colortext);
+		colors.push(colortext);
+	}
+			
+	return colors;	 
+}
+
+var clearCircles=function(){
+	
+	if(d3.selectAll(".pcircle")!=null){
+		// console.log(d3.selectAll(".pcircle"));
+		d3.selectAll(".pcircle").remove();
+		d3.selectAll(".cirout").remove();
+	}else {
+		console.log("pcircle not exit");
+	}
+	
+}
+
+//在detail_map上面标注颜色实例
+	
 	

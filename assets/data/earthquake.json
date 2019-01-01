@@ -1,0 +1,1529 @@
+{
+"type": "FeatureCollection",
+"metadata": {
+"generated": 1403749040000,
+"url": "http://earthquake.usgs.gov/earthquakes/feed/v0.1/summary/2.5_day.geojson",
+"title": "USGS Magnitude 2.5+ Earthquakes, Past Day",
+"subTitle": "Real-time, worldwide earthquake list for the past day",
+"cacheMaxAge": 60
+},
+"features": [
+{
+"type": "Feature",
+"properties": {
+"mag": 2.6,
+"place": "Central California",
+"time": "1403746685100",
+"updated": "1403746877844",
+"tz": 0,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/nc72243716",
+"felt": 0,
+"cdi": 1,
+"mmi": null,
+"alert": null,
+"status": "AUTOMATIC",
+"tsunami": null,
+"sig": "104",
+"net": "nc",
+"code": "72243716",
+"ids": ",nc72243716,",
+"sources": ",nc,",
+"types": ",dyfi,origin,phase-data,",
+"nst": "15",
+"dmin": "0.36830927",
+"rms": "0.06",
+"gap": "162",
+"magnitudeType": "Md"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-119.8042,
+35.8555,
+10.5
+]
+},
+"id": "nc72243716"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.5,
+"place": "36km WNW of San Simeon, California",
+"time": "1403744987600",
+"updated": "1403749011995",
+"tz": -420,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/nc72243681",
+"felt": 0,
+"cdi": 1,
+"mmi": null,
+"alert": null,
+"status": "REVIEWED",
+"tsunami": null,
+"sig": "96",
+"net": "nc",
+"code": "72243681",
+"ids": ",nc72243681,",
+"sources": ",nc,",
+"types": ",cap,dyfi,focal-mechanism,general-link,geoserve,nearby-cities,origin,phase-data,scitech-link,",
+"nst": "89",
+"dmin": "0.1706799",
+"rms": "0.11",
+"gap": "201.6",
+"magnitudeType": "Md"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-121.5448,
+35.8072,
+10.3
+]
+},
+"id": "nc72243681"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 5.1,
+"place": "Sumbawa region, Indonesia",
+"time": "1403741542930",
+"updated": "1403743365950",
+"tz": 0,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rm61",
+"felt": 1,
+"cdi": 2.2,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "400",
+"net": "us",
+"code": "c000rm61",
+"ids": ",usc000rm61,",
+"sources": ",us,",
+"types": ",cap,dyfi,origin,phase-data,",
+"nst": null,
+"dmin": "4.08",
+"rms": "1.11",
+"gap": "46",
+"magnitudeType": "mb"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+118.106,
+-9.6613,
+67.38
+]
+},
+"id": "usc000rm61"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.5,
+"place": "5km SE of The Geysers, California",
+"time": "1403738655700",
+"updated": "1403741707528",
+"tz": -420,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/nc72243611",
+"felt": 0,
+"cdi": 1,
+"mmi": null,
+"alert": null,
+"status": "AUTOMATIC",
+"tsunami": null,
+"sig": "96",
+"net": "nc",
+"code": "72243611",
+"ids": ",nc72243611,",
+"sources": ",nc,",
+"types": ",dyfi,focal-mechanism,general-link,geoserve,nearby-cities,origin,phase-data,scitech-link,",
+"nst": "42",
+"dmin": "0.00898315",
+"rms": "0.06",
+"gap": "54",
+"magnitudeType": "Md"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-122.715,
+38.7453,
+1.9
+]
+},
+"id": "nc72243611"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 5.4,
+"place": "107km SSE of Raoul Island, New Zealand",
+"time": "1403736401870",
+"updated": "1403737625837",
+"tz": -720,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rm58",
+"felt": 0,
+"cdi": 1,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "449",
+"net": "us",
+"code": "c000rm58",
+"ids": ",usc000rm58,",
+"sources": ",us,",
+"types": ",cap,dyfi,general-link,geoserve,nearby-cities,origin,phase-data,tectonic-summary,",
+"nst": null,
+"dmin": "0.999",
+"rms": "1.27",
+"gap": "58",
+"magnitudeType": "mb"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-177.4849,
+-30.1694,
+10
+]
+},
+"id": "usc000rm58"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 3.21,
+"place": "22km SSE of Kettleman City, California",
+"time": "1403733696460",
+"updated": "1403743863028",
+"tz": -420,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/nc72243551",
+"felt": 2,
+"cdi": 2.7,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "159",
+"net": "nc",
+"code": "72243551",
+"ids": ",nc72243551,ci37236296,",
+"sources": ",nc,ci,",
+"types": ",cap,dyfi,focal-mechanism,general-link,geoserve,nearby-cities,origin,phase-data,scitech-link,",
+"nst": "119",
+"dmin": "0.1637",
+"rms": "0.15",
+"gap": "110",
+"magnitudeType": "ml"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-119.8805,
+35.8161667,
+9.28
+]
+},
+"id": "nc72243551"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.5,
+"place": "31km NNE of Hatillo, Puerto Rico",
+"time": "1403731845300",
+"updated": "1403736811852",
+"tz": -240,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/pr14176005",
+"felt": 0,
+"cdi": 1,
+"mmi": null,
+"alert": null,
+"status": "REVIEWED",
+"tsunami": null,
+"sig": "96",
+"net": "pr",
+"code": "14176005",
+"ids": ",pr14176005,",
+"sources": ",pr,",
+"types": ",cap,dyfi,geoserve,nearby-cities,origin,tectonic-summary,",
+"nst": "8",
+"dmin": "0.35483454",
+"rms": "0.2",
+"gap": "248.4",
+"magnitudeType": "Md"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-66.7508,
+18.7647,
+61
+]
+},
+"id": "pr14176005"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.5,
+"place": "northern Alaska",
+"time": "1403730589000",
+"updated": "1403732415551",
+"tz": 0,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/ak11306271",
+"felt": 0,
+"cdi": 1,
+"mmi": null,
+"alert": null,
+"status": "automatic",
+"tsunami": null,
+"sig": "96",
+"net": "ak",
+"code": "11306271",
+"ids": ",ak11306271,",
+"sources": ",ak,",
+"types": ",dyfi,origin,",
+"nst": null,
+"dmin": null,
+"rms": "0.94",
+"gap": null,
+"magnitudeType": "ml"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-149.6314,
+66.1975,
+0
+]
+},
+"id": "ak11306271"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.5,
+"place": "96km SE of New Allakaket, Alaska",
+"time": "1403728365000",
+"updated": "1403729867779",
+"tz": -480,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/ak11306256",
+"felt": 0,
+"cdi": 1,
+"mmi": null,
+"alert": null,
+"status": "automatic",
+"tsunami": null,
+"sig": "96",
+"net": "ak",
+"code": "11306256",
+"ids": ",ak11306256,",
+"sources": ",ak,",
+"types": ",dyfi,general-link,geoserve,nearby-cities,origin,",
+"nst": null,
+"dmin": null,
+"rms": "1.04",
+"gap": null,
+"magnitudeType": "ml"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-150.9653,
+66.0026,
+5.9
+]
+},
+"id": "ak11306256"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.7,
+"place": "8km NE of Stillwater, Oklahoma",
+"time": "1403726117600",
+"updated": "1403746389139",
+"tz": -300,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rm2h",
+"felt": 13,
+"cdi": 3.3,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "116",
+"net": "us",
+"code": "c000rm2h",
+"ids": ",usc000rm2h,",
+"sources": ",us,",
+"types": ",cap,dyfi,general-link,geoserve,nearby-cities,origin,phase-data,tectonic-summary,",
+"nst": null,
+"dmin": null,
+"rms": "0.64",
+"gap": "62",
+"magnitudeType": "ml"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-96.9923,
+36.1671,
+5
+]
+},
+"id": "usc000rm2h"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 4.4,
+"place": "28km NNE of Masterton, New Zealand",
+"time": "1403725586000",
+"updated": "1403731366620",
+"tz": 720,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rm11",
+"felt": 0,
+"cdi": 1,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "298",
+"net": "us",
+"code": "c000rm11",
+"ids": ",usc000rm11,",
+"sources": ",us,",
+"types": ",cap,dyfi,general-link,geoserve,moment-tensor,nearby-cities,origin,phase-data,tectonic-summary,",
+"nst": null,
+"dmin": null,
+"rms": "1",
+"gap": null,
+"magnitudeType": "mwr"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+175.83,
+-40.744,
+32
+]
+},
+"id": "usc000rm11"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 4.6,
+"place": "89km NNE of Stoney Ground, Anguilla",
+"time": "1403721692120",
+"updated": "1403737197000",
+"tz": -240,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rm02",
+"felt": 2,
+"cdi": 4.3,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": "1",
+"sig": "326",
+"net": "us",
+"code": "c000rm02",
+"ids": ",at00n7qml5,usc000rm02,",
+"sources": ",at,us,",
+"types": ",cap,dyfi,geoserve,impact-link,moment-tensor,nearby-cities,origin,phase-data,tectonic-summary,",
+"nst": null,
+"dmin": "0.833",
+"rms": "1.1",
+"gap": "132",
+"magnitudeType": "mb"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-62.8029,
+18.8469,
+17.12
+]
+},
+"id": "usc000rm02"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 4.2,
+"place": "12km NNW of Little Sitkin Island, Alaska",
+"time": "1403718506400",
+"updated": "1403747614415",
+"tz": -540,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rlz9",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "271",
+"net": "us",
+"code": "c000rlz9",
+"ids": ",usc000rlz9,",
+"sources": ",us,",
+"types": ",cap,dyfi,general-link,geoserve,nearby-cities,origin,phase-data,tectonic-summary,",
+"nst": null,
+"dmin": "0.856",
+"rms": "1.32",
+"gap": "140",
+"magnitudeType": "mb"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+178.462,
+52.0552,
+135.25
+]
+},
+"id": "usc000rlz9"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 3,
+"place": "22km SSE of Kettleman City, California",
+"time": "1403715772800",
+"updated": "1403746748300",
+"tz": -420,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/nc72243471",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "REVIEWED",
+"tsunami": null,
+"sig": "138",
+"net": "nc",
+"code": "72243471",
+"ids": ",nc72243471,ci37236200,",
+"sources": ",nc,ci,",
+"types": ",cap,dyfi,focal-mechanism,general-link,geoserve,nearby-cities,origin,phase-data,scitech-link,",
+"nst": "136",
+"dmin": "0.18864621",
+"rms": "0.22",
+"gap": "72",
+"magnitudeType": "Ml"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-119.847,
+35.8248,
+10.5
+]
+},
+"id": "nc72243471"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 3.2,
+"place": "2km SSE of Ferndale, California",
+"time": "1403715626000",
+"updated": "1403743281751",
+"tz": -420,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/nc72243461",
+"felt": 7,
+"cdi": 2.5,
+"mmi": null,
+"alert": null,
+"status": "AUTOMATIC",
+"tsunami": null,
+"sig": "159",
+"net": "nc",
+"code": "72243461",
+"ids": ",nc72243461,",
+"sources": ",nc,",
+"types": ",dyfi,focal-mechanism,general-link,geoserve,nearby-cities,origin,phase-data,scitech-link,",
+"nst": "20",
+"dmin": "0.10779783",
+"rms": "0.06",
+"gap": "154.8",
+"magnitudeType": "Ml"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-124.252,
+40.5572,
+23.7
+]
+},
+"id": "nc72243461"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 3.3,
+"place": "23km SE of Kettleman City, California",
+"time": "1403706896100",
+"updated": "1403737507146",
+"tz": -420,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/nc72243371",
+"felt": 1,
+"cdi": 2,
+"mmi": null,
+"alert": null,
+"status": "REVIEWED",
+"tsunami": null,
+"sig": "168",
+"net": "nc",
+"code": "72243371",
+"ids": ",nc72243371,ci37236088,",
+"sources": ",nc,ci,",
+"types": ",cap,dyfi,focal-mechanism,general-link,geoserve,nearby-cities,origin,phase-data,scitech-link,",
+"nst": "138",
+"dmin": "0.23356197",
+"rms": "0.3",
+"gap": "28.8",
+"magnitudeType": "Ml"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-119.7942,
+35.8463,
+7.8
+]
+},
+"id": "nc72243371"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.7,
+"place": "72km N of Brenas, Puerto Rico",
+"time": "1403705328100",
+"updated": "1403734290572",
+"tz": -240,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/pr14176004",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "REVIEWED",
+"tsunami": null,
+"sig": "112",
+"net": "pr",
+"code": "14176004",
+"ids": ",pr14176004,usc000rlv4,",
+"sources": ",pr,us,",
+"types": ",cap,dyfi,geoserve,nearby-cities,origin,phase-data,tectonic-summary,",
+"nst": "11",
+"dmin": "0.85339952",
+"rms": "0.25",
+"gap": "291.6",
+"magnitudeType": "Md"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-66.3666,
+19.1247,
+23
+]
+},
+"id": "pr14176004"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 3.3,
+"place": "17km NE of Helena, Oklahoma",
+"time": "1403701785300",
+"updated": "1403732588244",
+"tz": -300,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rlu3",
+"felt": 4,
+"cdi": 3.1,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "169",
+"net": "us",
+"code": "c000rlu3",
+"ids": ",usc000rlu3,",
+"sources": ",us,",
+"types": ",cap,dyfi,general-link,geoserve,nearby-cities,origin,phase-data,tectonic-summary,",
+"nst": null,
+"dmin": null,
+"rms": "0.43",
+"gap": "95",
+"magnitudeType": "ml"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-98.1072,
+36.639,
+5
+]
+},
+"id": "usc000rlu3"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 5.6,
+"place": "14km NNW of Wawa, Philippines",
+"time": "1403697123600",
+"updated": "1403736896381",
+"tz": 480,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rltb",
+"felt": 89,
+"cdi": 4.1,
+"mmi": 4.82,
+"alert": "green",
+"status": "reviewed",
+"tsunami": null,
+"sig": "519",
+"net": "us",
+"code": "c000rltb",
+"ids": ",usc000rltb,gcmt20140625115203,",
+"sources": ",us,gcmt,",
+"types": ",cap,dyfi,general-link,geoserve,losspager,moment-tensor,nearby-cities,origin,phase-data,shakemap,tectonic-summary,",
+"nst": null,
+"dmin": "8.695",
+"rms": "0.91",
+"gap": "34",
+"magnitudeType": "mb"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+120.6944,
+13.5848,
+76.74
+]
+},
+"id": "usc000rltb"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 4.7,
+"place": "7km SE of El Rodeo, Argentina",
+"time": "1403693131740",
+"updated": "1403695625783",
+"tz": -180,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rlse",
+"felt": 1,
+"cdi": 2,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "340",
+"net": "us",
+"code": "c000rlse",
+"ids": ",usc000rlse,",
+"sources": ",us,",
+"types": ",cap,dyfi,general-link,geoserve,nearby-cities,origin,phase-data,tectonic-summary,",
+"nst": null,
+"dmin": "3.269",
+"rms": "1.29",
+"gap": "134",
+"magnitudeType": "mb"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-65.8106,
+-28.2552,
+31.69
+]
+},
+"id": "usc000rlse"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 4.5,
+"place": "68km SW of Masachapa, Nicaragua",
+"time": "1403693065120",
+"updated": "1403722021427",
+"tz": -360,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rlsl",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "312",
+"net": "us",
+"code": "c000rlsl",
+"ids": ",usc000rlsl,",
+"sources": ",us,",
+"types": ",cap,dyfi,general-link,geoserve,nearby-cities,origin,phase-data,tectonic-summary,",
+"nst": null,
+"dmin": "1.018",
+"rms": "1",
+"gap": "149",
+"magnitudeType": "mb"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-87.0111,
+11.4091,
+49.66
+]
+},
+"id": "usc000rlsl"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 3.4,
+"place": "21km NNE of Noatak, Alaska",
+"time": "1403692910000",
+"updated": "1403721862639",
+"tz": -480,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/ak11305549",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "automatic",
+"tsunami": null,
+"sig": "178",
+"net": "ak",
+"code": "11305549",
+"ids": ",ak11305549,",
+"sources": ",ak,",
+"types": ",dyfi,general-link,geoserve,nearby-cities,origin,",
+"nst": null,
+"dmin": null,
+"rms": "0.47",
+"gap": null,
+"magnitudeType": "ml"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-162.769,
+67.7446,
+18
+]
+},
+"id": "ak11305549"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 4.3,
+"place": "16km N of Cardenas, Nicaragua",
+"time": "1403692683030",
+"updated": "1403721753476",
+"tz": -360,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rlsa",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "284",
+"net": "us",
+"code": "c000rlsa",
+"ids": ",usc000rlsa,",
+"sources": ",us,",
+"types": ",cap,dyfi,general-link,geoserve,nearby-cities,origin,phase-data,tectonic-summary,",
+"nst": null,
+"dmin": "0.714",
+"rms": "0.85",
+"gap": "158",
+"magnitudeType": "mb"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-85.5286,
+11.3399,
+179.96
+]
+},
+"id": "usc000rlsa"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 3.1,
+"place": "21km SE of Kettleman City, California",
+"time": "1403691142700",
+"updated": "1403732678430",
+"tz": -420,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/nc72243256",
+"felt": 2,
+"cdi": 2,
+"mmi": null,
+"alert": null,
+"status": "AUTOMATIC",
+"tsunami": null,
+"sig": "148",
+"net": "nc",
+"code": "72243256",
+"ids": ",ci37235984,nc72243256,",
+"sources": ",ci,nc,",
+"types": ",dyfi,focal-mechanism,general-link,geoserve,nearby-cities,origin,phase-data,scitech-link,",
+"nst": "84",
+"dmin": "0.22457882",
+"rms": "0.26",
+"gap": "43.2",
+"magnitudeType": "Ml"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-119.7995,
+35.844,
+5
+]
+},
+"id": "nc72243256"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.9,
+"place": "8km NNW of Dyersburg, Tennessee",
+"time": "1403689675200",
+"updated": "1403745789506",
+"tz": -300,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/nm062514a",
+"felt": 11,
+"cdi": 2.5,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "132",
+"net": "nm",
+"code": "062514a",
+"ids": ",nm062514a,",
+"sources": ",nm,",
+"types": ",cap,dyfi,general-link,geoserve,nearby-cities,origin,tectonic-summary,",
+"nst": "22",
+"dmin": "0.02694946",
+"rms": "0.04",
+"gap": "75.5999939520005",
+"magnitudeType": "md"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-89.4077,
+36.1058,
+9.6
+]
+},
+"id": "nm062514a"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 5,
+"place": "Prince Edward Islands region",
+"time": "1403688596180",
+"updated": "1403717546285",
+"tz": 120,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rlrd",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "385",
+"net": "us",
+"code": "c000rlrd",
+"ids": ",usc000rlrd,",
+"sources": ",us,",
+"types": ",cap,dyfi,geoserve,nearby-cities,origin,phase-data,",
+"nst": null,
+"dmin": "17.559",
+"rms": "1.41",
+"gap": "75",
+"magnitudeType": "mb"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+33.665,
+-46.9459,
+17.46
+]
+},
+"id": "usc000rlrd"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 4.5,
+"place": "5km W of Nafpaktos, Greece",
+"time": "1403688103640",
+"updated": "1403739127000",
+"tz": 180,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rlr5",
+"felt": 2,
+"cdi": 2.2,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "312",
+"net": "us",
+"code": "c000rlr5",
+"ids": ",usc000rlr5,",
+"sources": ",us,",
+"types": ",cap,dyfi,general-link,geoserve,moment-tensor,nearby-cities,origin,phase-data,tectonic-summary,",
+"nst": null,
+"dmin": "0.774",
+"rms": "1.33",
+"gap": "49",
+"magnitudeType": "mb"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+21.7623,
+38.3887,
+10.94
+]
+},
+"id": "usc000rlr5"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.8,
+"place": "16km S of Little Sitkin Island, Alaska",
+"time": "1403686437000",
+"updated": "1403715391609",
+"tz": -540,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/ak11305482",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "121",
+"net": "ak",
+"code": "11305482",
+"ids": ",ak11305482,",
+"sources": ",ak,",
+"types": ",cap,dyfi,general-link,geoserve,nearby-cities,origin,tectonic-summary,",
+"nst": null,
+"dmin": null,
+"rms": "0.33",
+"gap": null,
+"magnitudeType": "ml"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+178.4735,
+51.799,
+97.4
+]
+},
+"id": "ak11305482"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.6,
+"place": "21km SE of Kettleman City, California",
+"time": "1403685715400",
+"updated": "1403748064421",
+"tz": -420,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/nc72243201",
+"felt": 2,
+"cdi": 2,
+"mmi": null,
+"alert": null,
+"status": "REVIEWED",
+"tsunami": null,
+"sig": "104",
+"net": "nc",
+"code": "72243201",
+"ids": ",nc72243201,ci37235928,",
+"sources": ",nc,ci,",
+"types": ",cap,dyfi,focal-mechanism,general-link,geoserve,nearby-cities,origin,phase-data,scitech-link,",
+"nst": "111",
+"dmin": "0.24254513",
+"rms": "0.26",
+"gap": "28.8",
+"magnitudeType": "Md"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-119.8027,
+35.8645,
+8.2
+]
+},
+"id": "nc72243201"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.6,
+"place": "Central Alaska",
+"time": "1403683193000",
+"updated": "1403712152419",
+"tz": 0,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/ak11305441",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "automatic",
+"tsunami": null,
+"sig": "104",
+"net": "ak",
+"code": "11305441",
+"ids": ",ak11305441,",
+"sources": ",ak,",
+"types": ",dyfi,origin,",
+"nst": null,
+"dmin": null,
+"rms": "1.22",
+"gap": null,
+"magnitudeType": "ml"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-149.1274,
+62.3814,
+9.3
+]
+},
+"id": "ak11305441"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 4.6,
+"place": "53km ESE of Puerto Gaitan, Colombia",
+"time": "1403681264920",
+"updated": "1403684852299",
+"tz": -300,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rlph",
+"felt": 1,
+"cdi": 2,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "326",
+"net": "us",
+"code": "c000rlph",
+"ids": ",usc000rlph,",
+"sources": ",us,",
+"types": ",cap,dyfi,general-link,geoserve,nearby-cities,origin,phase-data,tectonic-summary,",
+"nst": null,
+"dmin": "2.329",
+"rms": "0.79",
+"gap": "126",
+"magnitudeType": "mb"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-71.674,
+4.0504,
+57.15
+]
+},
+"id": "usc000rlph"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.8,
+"place": "21km W of Kenai, Alaska",
+"time": "1403678819000",
+"updated": "1403707771901",
+"tz": -480,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/ak11305419",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "automatic",
+"tsunami": null,
+"sig": "121",
+"net": "ak",
+"code": "11305419",
+"ids": ",ak11305419,",
+"sources": ",ak,",
+"types": ",dyfi,general-link,geoserve,nearby-cities,origin,tectonic-summary,",
+"nst": null,
+"dmin": null,
+"rms": "0.62",
+"gap": null,
+"magnitudeType": "ml"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-151.6513,
+60.5678,
+69.5
+]
+},
+"id": "ak11305419"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.8,
+"place": "24km NNW of Hatillo, Puerto Rico",
+"time": "1403678664500",
+"updated": "1403707666121",
+"tz": -240,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/pr14176003",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "REVIEWED",
+"tsunami": null,
+"sig": "121",
+"net": "pr",
+"code": "14176003",
+"ids": ",pr14176003,",
+"sources": ",pr,",
+"types": ",cap,dyfi,geoserve,nearby-cities,origin,tectonic-summary,",
+"nst": "4",
+"dmin": "0.37459747",
+"rms": "0.21",
+"gap": "313.2",
+"magnitudeType": "Md"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-66.8905,
+18.6998,
+78
+]
+},
+"id": "pr14176003"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.8,
+"place": "21km SE of Kettleman City, California",
+"time": "1403674344800",
+"updated": "1403727205320",
+"tz": -420,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/nc72243101",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "AUTOMATIC",
+"tsunami": null,
+"sig": "121",
+"net": "nc",
+"code": "72243101",
+"ids": ",nc72243101,ci37235808,",
+"sources": ",nc,ci,",
+"types": ",dyfi,focal-mechanism,general-link,geoserve,nearby-cities,origin,phase-data,scitech-link,",
+"nst": "54",
+"dmin": "0.16169675",
+"rms": "0.18",
+"gap": "201.6",
+"magnitudeType": "Md"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-119.8903,
+35.8223,
+9.1
+]
+},
+"id": "nc72243101"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.9,
+"place": "34km NNW of San Juan, Puerto Rico",
+"time": "1403673244500",
+"updated": "1403702202450",
+"tz": -240,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/pr14176002",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "REVIEWED",
+"tsunami": null,
+"sig": "129",
+"net": "pr",
+"code": "14176002",
+"ids": ",pr14176002,",
+"sources": ",pr,",
+"types": ",cap,dyfi,geoserve,nearby-cities,origin,tectonic-summary,",
+"nst": "5",
+"dmin": "0.43298797",
+"rms": "0.2",
+"gap": "244.8",
+"magnitudeType": "Md"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-66.1867,
+18.7658,
+98
+]
+},
+"id": "pr14176002"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 4.7,
+"place": "West Chile Rise",
+"time": "1403670925590",
+"updated": "1403699880475",
+"tz": -360,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rln6",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "340",
+"net": "us",
+"code": "c000rln6",
+"ids": ",usc000rln6,",
+"sources": ",us,",
+"types": ",cap,dyfi,general-link,geoserve,nearby-cities,origin,phase-data,tectonic-summary,",
+"nst": null,
+"dmin": "14.697",
+"rms": "0.65",
+"gap": "250",
+"magnitudeType": "mb"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-89.9635,
+-40.9878,
+14.17
+]
+},
+"id": "usc000rln6"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.9,
+"place": "Central California",
+"time": "1403670603100",
+"updated": "1403723207000",
+"tz": 0,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/nc72243071",
+"felt": 1,
+"cdi": 2.2,
+"mmi": null,
+"alert": null,
+"status": "AUTOMATIC",
+"tsunami": null,
+"sig": "130",
+"net": "nc",
+"code": "72243071",
+"ids": ",ci37235752,nc72243071,",
+"sources": ",ci,nc,",
+"types": ",dyfi,focal-mechanism,origin,phase-data,scitech-link,",
+"nst": "66",
+"dmin": "0.16169675",
+"rms": "0.19",
+"gap": "190.8",
+"magnitudeType": "Md"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-119.8883,
+35.8148,
+6.9
+]
+},
+"id": "nc72243071"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 5.1,
+"place": "Fiji region",
+"time": "1403670372430",
+"updated": "1403699503208",
+"tz": 0,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/usc000rlmv",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "reviewed",
+"tsunami": null,
+"sig": "400",
+"net": "us",
+"code": "c000rlmv",
+"ids": ",usc000rlmv,",
+"sources": ",us,",
+"types": ",cap,dyfi,origin,phase-data,",
+"nst": null,
+"dmin": "5.375",
+"rms": "0.81",
+"gap": "101",
+"magnitudeType": "mb"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-177.073,
+-20.5288,
+314.27
+]
+},
+"id": "usc000rlmv"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 3.2,
+"place": "20km SE of Kettleman City, California",
+"time": "1403668612200",
+"updated": "1403722515480",
+"tz": -420,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/nc72243056",
+"felt": 1,
+"cdi": 2.7,
+"mmi": null,
+"alert": null,
+"status": "AUTOMATIC",
+"tsunami": null,
+"sig": "158",
+"net": "nc",
+"code": "72243056",
+"ids": ",ci37235720,nc72243056,",
+"sources": ",ci,nc,",
+"types": ",dyfi,focal-mechanism,general-link,geoserve,nearby-cities,origin,phase-data,scitech-link,",
+"nst": "81",
+"dmin": "0.1706799",
+"rms": "0.22",
+"gap": "212.4",
+"magnitudeType": "Ml"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-119.8792,
+35.824,
+8.1
+]
+},
+"id": "nc72243056"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 2.6,
+"place": "51km N of San Juan, Puerto Rico",
+"time": "1403666423100",
+"updated": "1403695376265",
+"tz": -240,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/pr14176001",
+"felt": null,
+"cdi": null,
+"mmi": null,
+"alert": null,
+"status": "REVIEWED",
+"tsunami": null,
+"sig": "104",
+"net": "pr",
+"code": "14176001",
+"ids": ",pr14176001,",
+"sources": ",pr,",
+"types": ",cap,dyfi,geoserve,nearby-cities,origin,tectonic-summary,",
+"nst": "15",
+"dmin": "0.61534597",
+"rms": "0.15",
+"gap": "244.8",
+"magnitudeType": "Md"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-66.0625,
+18.9274,
+39
+]
+},
+"id": "pr14176001"
+},
+{
+"type": "Feature",
+"properties": {
+"mag": 3.8,
+"place": "32km ENE of Noatak, Alaska",
+"time": "1403665367000",
+"updated": "1403694371629",
+"tz": -480,
+"url": "http://earthquake.usgs.gov/earthquakes/eventpage/ak11305130",
+"felt": null,
+"cdi": null,
+"mmi": 3.74,
+"alert": "green",
+"status": "reviewed",
+"tsunami": null,
+"sig": "222",
+"net": "ak",
+"code": "11305130",
+"ids": ",ak11305130,",
+"sources": ",ak,",
+"types": ",cap,dyfi,general-link,geoserve,losspager,nearby-cities,origin,shakemap,",
+"nst": null,
+"dmin": null,
+"rms": "0.76",
+"gap": null,
+"magnitudeType": "ml"
+},
+"geometry": {
+"type": "Point",
+"coordinates": [
+-162.2233,
+67.6418,
+18.6
+]
+},
+"id": "ak11305130"
+}
+]
+}

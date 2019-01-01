@@ -1,31 +1,28 @@
-var rankings={};
-var colors={};	
+var rankings={};//global variable city tcargo  降序排列
+var colors={};	//这里存储的是小地图的颜色块
 var outprovince;//globa variable
-var width=500;
-var height=350;
+var srsc=[];//specific rank for specific city [cityname,cityranking]
 var psvg=function(){
+	var width=500;
+	var height=350;
 	var svg3=d3.select("body div.detail")
 				.append("svg")
 				.attr("width",width)
 				.attr("height",height)
-				.style("border-radius","5px")
-				.style("background-color","#c8d9eb");
+				.style("border-radius","5px");
+				// .style("background-color","#c8d9eb");
 	return svg3;
 }
-var province=psvg();
-var detail_map=province.append("g")
-				.attr("id","detail_map")
-				.attr("stroke","white")
-				.attr("stroke-width",1);
-var getProColor=function(cityname){
-	
+				
+var getCityColor=function(cityname,leftcolor){
+	//如果colors中存有这个省份就返回color属性，否则的话返回指定的颜色值
 	for(var i=0;i<rankings.length;i++){
 		if(rankings[i].incity==cityname){
 			return colors[i];
 		}
 	}
 	//黑色的区域表示
-	return "#e5f5e0";//否则的话返回纯绿色
+	return leftcolor;//否则返回指定的最浅的颜色值
 }
 var querySelect=function(inpro,outpro,mapdata,x,y){
 			$.ajax({
@@ -39,8 +36,13 @@ var querySelect=function(inpro,outpro,mapdata,x,y){
 					dataType:"json",
 					success:function(data){
 						rankings=data;
-					  colors=colorsArray2(rankings);
-						console.log(colors);
+					  // colors=colorsArray3(rankings); 返回色系是从深色到浅色 和 rankings对应
+						colors=colorsArray3("rgb(253,208,162)","rgb(217,72,1)",rankings.length);
+					 //console.log(colors);
+            for(var keys in rankings){
+							srsc[rankings[keys].incity]=rankings[keys].ranking;
+						}
+						// console.log(srsc);
 						drawDetailMap(mapdata,x,y);
 					},
 					error:function(err){
@@ -62,104 +64,143 @@ var getlinecolor=function(key,line){
 	var color="rgb("+r+","+g+","+b+")";
 	return color;
 }
-var drawCurveLine=function(mline,startpoint,endpoint,key,outpro,lines){
-	       //为前5名设置线的宽度为2
-				 var key=parseInt(key);
-				// console.log("key"+key);
-				console.log(endpoint);
-				 var width=1;
-				 var color="";
-				 var ratio=0;
-				 var baohedu=1;
-				 ratio=parseFloat(key/lines);
-				 var radius=140*(Math.PI/180);
-				 //console.log(ratio);
-				 var tem=HSVtoRGB(radius,baohedu,1-ratio);
-				 // color="rgb("+tem.r+","+tem.g+","+tem.b+")";
-				 
-				  if(Math.abs(ratio)<=parseFloat(0.20)){
-						width=3.5;
-						var tem=HSVtoRGB(radius,baohedu,1);
-						// color="rgb("+tem.r+","+tem.g+","+tem.b+")";
-						color="#fc4e2a";
-					}else if(parseFloat(0.20)<ratio&&ratio<=parseFloat(0.5)){
-						//console.log("second");
-						width=3.5;
-						var tem=HSVtoRGB(radius,baohedu,0.7);
-						// color="rgb("+tem.r+","+tem.g+","+tem.b+")";
-						color="#fd8d3c";
-					}else if(parseFloat(0.5)<ratio&&ratio<=parseFloat(0.8)){
-						//console.log("third");
-						width=3.5;
-						var tem=HSVtoRGB(radius,baohedu,0.5);
-						// color="rgb("+tem.r+","+tem.g+","+tem.b+")";
-						color="#feb24c";
-					}else{
-						//console.log("fourth");
-						width=3.5;
-						var tem=HSVtoRGB(radius,baohedu,0.3);
-						// color="rgb("+tem.r+","+tem.g+","+tem.b+")";
-						color="#fed976";
-					}
-					drawCircle(endpoint[0],endpoint[1],color);
-					width=1;
-	        outprovince=outpro;
-				  var qx=0.5*(endpoint[0]-startpoint[0]);
-					var qy=0*(Math.abs(startpoint[1]-endpoint[1]));
-					var endx=endpoint[0]-startpoint[0];
-					var endy=endpoint[1]-startpoint[1];
-					
-					// console.log(color);
-					var temid="tem"+key;
-					//d使用小写的q代表的是相对坐标
-					var d="M "+startpoint[0]+","+startpoint[1]+" q "+qx+","+qy+" "+endx+","+endy;
-				   mline.append("path")
-					    .attr("class","line")
-							.attr("id",temid)
-							.attr("d",d)
-							.attr("fill","transparent")
-							.attr("stroke",color)
-							.attr("stroke-width",width);
-
-
-
-           width=0;
-					 color="";
-					var route=document.querySelector("#"+temid);
-					var length=route.getTotalLength();
-					//this code clear all the transition effect before this item 
-					route.style.transition=route.style.webkitTransition="none";
-					
-					//set up the starting positions
-					route.style.strokeDasharray=length+" "+length;
-					route.style.strokeDashoffset=length;
-					
-					//trigger a lyout so styles are calculated and the 
-					//browser picks up the starting possition before animationg
-					route.getBoundingClientRect();
-					//define our transition
-					route.style.transition=route.style.webkitTransition="stroke-dashoffset 2s ease-in-out";
-					
-					route.style.strokeDashoffset="0";
-					
-					//为每一个终点加上一个tip来提示出货量排序
-					//绘制标签形状
-					var text=temid.substring(3);
-						 
-					mline.append("text")
-					   .attr("class","text")
-						 .attr("x",endpoint[0]+10)
-						 .attr("y",endpoint[1]+10)
-						 .style("font-size","10px")
- 						 .attr("stroke","#cb181d")
-// 					 .attr("stroke-width",1)
-						 .text(text);
-					
-					
+// 根据圆的半径进行缩放操作
+var  radiusScale=d3.scale.linear();
+     radiusScale.domain([0,50])
+								.range([4,30]);
+var drawCircle=function(x,y,color,proname,radius,order){		
+			//为每一个圆点注册点击事件
+			//根据 某个省份统计数据的大小来绘制终点圆形 以便注册点击事件
+			var c_r;
+			if(order==0){
+				c_r=4;
+			}else{
+				c_r=radiusScale(radius);
 			}
-var graph=function(){
-	var width=900;
-	var height=700;
+			// console.log(proname+"proname");
+			circles.append("circle")
+			.attr("class","pcircle")
+			.attr("id","c"+proname)
+			.attr("cx",x)
+			.attr("cy",y-30)
+			.attr("r",c_r)
+			.attr("stroke",color)
+			.attr("fill",color)
+			.on("click",function(d){
+							//点击小圆点刷新地图显示从该省份出去的物流信息
+							var id=d3.select(this).attr("id");
+							id=id.substring(1,id.length);
+							refreshMap(id);
+							d3.select("#opro").text(id);
+							//console.log("click on circle");
+			})
+			.on("mouseover",function(){
+				
+				var g=circles.append("g")
+							.attr("class","textg")
+							.attr("storke-width","1");
+							
+						g.append("text")
+							.attr("class","temtext")
+							.attr("x",x)
+							.attr("y",y-50)
+							.attr("stroke","white")
+							.attr("fill","white")
+							.attr("font-size","20px")
+							.text(proname)
+							.transition()
+							.duration(100)
+							.ease("linear") 
+							.attr("y",y-30);
+							
+							
+						g.append("text")
+						.attr("class","temtext")
+						.attr("x",x)
+						.attr("y",y-50)
+						.attr("stroke","white")
+						.attr("fill","white")
+						.attr("font-size","20px")
+						.text("进货量"+radius.toFixed(2))
+						.transition()
+						.duration(100)
+						.ease("linear") 
+						.attr("y",y-10);
+						
+			})
+			.on("mouseout",function(){
+				d3.selectAll(".textg").remove();
+			})
+			.transition()
+			.duration(1200)
+			.ease("elastic")
+			.attr("cx",x)
+			.attr("cy",y)
+			;
+			
+		var ordertext=circles.append("text")
+				.attr("class","text")
+				.attr("x",x-5)
+				.attr("y",y)
+				.attr("stroke-width",1)
+				.attr("stroke","#d9d9d9");
+	      ordertext.text("");
+		}
+		
+var drawCurveLine2=function(mline,spoint,epoint,key,lines,tcargo){
+			       //为前5名设置线的宽度为2
+						 //update province =spoint.pro
+						 var startpoint={};
+						 var endpoint={};
+					   startpoint=projection([parseFloat(spoint.x),parseFloat(spoint.y)]);
+						 endpoint=projection([parseFloat(epoint.x),parseFloat(epoint.y)]);
+						 
+						 var key=parseInt(key);
+						 var width=1;
+						 var color=procolors[key-1];
+						 var ratio=0;
+						 ratio=parseFloat(key/lines);
+						 var radius=140*(Math.PI/180);
+	           var temid="tem"+key;
+
+						  var qx=0.5*(endpoint[0]-startpoint[0]);
+							var qy=0*(Math.abs(startpoint[1]-endpoint[1]));
+							var endx=endpoint[0]-startpoint[0];
+							var endy=endpoint[1]-startpoint[1];
+							//指明circle代表的省份信息
+							//console.log(color);
+							var text=temid.substring(3);		
+              drawCircle(endpoint[0],endpoint[1],color,epoint.pro,tcargo,parseInt(text));		
+							//d使用小写的q代表的是相对坐标
+							var d="M "+startpoint[0]+","+startpoint[1]+" q "+qx+","+qy+" "+endx+","+endy;
+						       mline.append("path")
+							    .attr("class","line")
+									.attr("id",temid)
+									.attr("d",d)
+									.attr("fill","transparent")
+									.attr("stroke",color)
+									.attr("stroke-width",width);
+							var route=document.querySelector("#"+temid);
+							var length=route.getTotalLength();
+							//this code clear all the transition effect before this item 
+							route.style.transition=route.style.webkitTransition="none";
+							
+							//set up the starting positions
+							route.style.strokeDasharray=length+" "+length;
+							route.style.strokeDashoffset=length;
+							
+							//trigger a lyout so styles are calculated and the 
+							//browser picks up the starting possition before animationg
+							route.getBoundingClientRect();
+							//define our transition
+							route.style.transition=route.style.webkitTransition="stroke-dashoffset 2s ease-in-out";
+							
+							route.style.strokeDashoffset="0";
+						  width=0;
+						  color="";
+					}
+var graph=function(width,height){
+	// var background="#020814"; 
 	var background="#020814"; 
 	var svg=d3.select("body div.fxmap")
 				.append("svg")
@@ -167,23 +208,23 @@ var graph=function(){
 				.attr("width",width)
 				.attr("height",height)
 				.attr("right","0")
-				.style("background",background);
+				.style("background",background)
+				.style("border-radius","3px");
     return svg;				
 }		
 var leftSvg=function(){
-	var width=500;
-	var height=650;
-	var svg2=d3.select("body div.prank")
+	var width=470;
+	var height=730;
+	var svg2=d3.select("body div.svg_box")
 				.append("svg")
 				.attr("width",width)
 				.attr("height",height)
-				.style("background-color","#0b032d")
-				.style("border-radius","10px")
-				.style("opacity","1");
+				.style("background-color","none")
+				.style("opacity","");
+				
 	return svg2;			
 }	
 var drawDetailMap=function(data,x,y){
-	
 	var cities=[];
 	for(var i=0;i<data.length;i++){
 		cities.push(
@@ -197,7 +238,6 @@ var drawDetailMap=function(data,x,y){
 	var item=parseInt(data.length/2);
 	var centerpoint=getCenterPoint(cities);
 	var scaletime=getScaleTimes(cities);
-	
 	var dp =
 	d3.geo.mercator()
 	.center([centerpoint[0].lat,centerpoint[0].log])
@@ -205,21 +245,25 @@ var drawDetailMap=function(data,x,y){
 	.translate([x, y]);
 	
 	var dpath = d3.geo.path().projection(dp);
-	   //绘制地图
 	detail_map.selectAll("path")
 				.data(data)
 				.enter()
 				.append("path")
 				.attr("fill",function(d,i){
-					return getProColor(d.properties.name);
+					return getCityColor(d.properties.name,"#7bccc4");
 				})
 				.attr("d",dpath)
 				.on("mouseover",function(){
 					d3.select(this).attr("class","orange");
+					// console.log("hover");
 				})
 				.on("mouseout",function(){
 					d3.select(this).attr("class","");
-				});
+					// console.log("out");
+				})
+				.on('click',function(){
+					// console.log("click");
+				})
 	  //在地图上面标注市信息
 		var location=province.selectAll("location")
 							.data(cities)
@@ -242,30 +286,103 @@ var drawDetailMap=function(data,x,y){
 						return d.name;
 					})
 					.attr("fill",function(d,i){
-						return "pink";
+						return "#08306b";
 					})
 					.attr("text-anchor","middle")
 					.attr("font-family","sans-setif")
 					.attr("font-size","10px")
 					.attr("font-weight","250")
+					.style("fill-opacity",0)
 					.on("mouseover",function(d){
-						//字体放大
-					d3.select(this).attr("font-size","20px")
-													.attr("font-weight","bold")
-													.attr("fill","black");
+					 var otext=d3.select(this).text();
+					 var ntext;
+
+					 if(srsc[otext]===undefined){
+						ntext= otext+":0";
+					 }else{
+						 ntext=otext+":"+srsc[otext].toFixed(2);
+					 }
+				
+					 d3.select(this).attr("font-size","20px")
+					 							.attr("font-weight","bold")
+					 							.attr("fill","black")
+												.text(ntext)
+												.style("fill-opacity",1);
+					 
 					})
 					.on("mouseout",function(){
+						var otext=d3.select(this).text();
+						var ntext=otext.substring(0,otext.indexOf(":"));
 						d3.select(this).attr("font-size","10px")
 													.attr("font-weight","250")
-													.attr("fill","#ea9c1b");
+													.attr("fill","#ea9c1b")
+													.text(ntext)
+													.style("fill-opacity",0);
 				});
-					
-	}			
+	}	
+	
+var refreshMap=function(proname){
+	var exp=cargolinks[proname].exp;
+	//获取该省份市中心
+	var sx=centers[procenter[proname]].x;
+	var sy=centers[procenter[proname]].y;
+	//sort exp by sortFunction
+	var key=0;
+	mline.selectAll(".line").remove();
+	mline.selectAll(".text").remove();
+	//清除已经有的svg2的部分
+	svg2.selectAll("g").remove();
+	clearCircles();//清除原来地图上已经标注的省中心
+	outprovince=proname;
+	
+	var dexp=Object.keys(exp).sort(function(a,b){
+		return exp[b]-exp[a];
+	});
+	var dataset=[];
+	procolors=colorsArray3("rgb(253,208,162)","rgb(217,72,1)",dexp.length);
+	var spoint={
+		"x":sx,
+		"y":sy,
+		"pro":proname
+	}
+	for(var keys in dexp )
+	{
+		dataset.push(
+		{
+		"pro":dexp[keys],
+		"tcargo":exp[dexp[keys]],
+		"position":key
+		});
+		// .log(exp[dexp[keys]]); 江苏有运往钓鱼岛的货物没法画出来
+		key++;
+		var ex=0;
+		var ey=0;
+		if(dexp[keys]=="钓鱼岛"){
+			ex=123.284;
+			ey=25.446;
+			}else{
+				// console.log(dexp[keys]);
+			ex=centers[procenter[dexp[keys]]].x;
+	   	ey=centers[procenter[dexp[keys]]].y;
+			}
+			
+			var epoint={
+				"x":ex,
+				"y":ey,
+				"pro":dexp[keys]
+			}
+		drawCurveLine2(mline,spoint,epoint,key,dexp.length,dataset[keys].tcargo);
+	}					
+	
+	key =0;
+	drawLeft(dataset,svg2);
+}
 var drawLeft=function(dataset,container){
-var width=500,
-	  leftMargin=0,
-		topMargin=10,
-		barHeight=15,
+var width=470,
+	  leftMargin=10,
+		topMargin=0,
+		rightMargin=15,
+		barHeight=18,
 		barGap=4,
 		tickGap=5,
 		tickHeight=10,
@@ -276,7 +393,8 @@ var width=500,
 				      .range([0,width]);
 		var barGroup=container.append("g")
 			           .attr("transform",translateText)
-							   .attr("class","bar");							  
+							   .attr("class","bar");	
+															 
 	  barGroup.selectAll("rect")
 					.data(dataset)
 					.enter()
@@ -289,18 +407,19 @@ var width=500,
 					.attr("height",barHeight)
 					.attr("fill",function(d){ 
 						if(d.position<=2){
-							return "#a20e0e";
-						}else if(d.position>=30){
-							return "#e29c68";
-						}
-						else{
-							return "#c85108";
+							return "#006d2c";
+						}else if(d.position>=25){
+							return "#f03b20";
+						}else{
+							return "#74c476"
 						}
 					})
 					.on("click",function(d){
-						var yalias=175;
+						var yalias=200;
 						var xalias=250;
 						//显示到具体的市级单位 以市级单位的第一个区为中心绘制具体地图
+						//选中左侧的circle元素，制作闪烁效果
+						
 						if(d3.select(this).attr("id")=="钓鱼岛"){
 							//直接显示钓鱼岛的tcargo是多少
 							alert("钓鱼岛地图尚未完备，请选看其余省份");
@@ -309,11 +428,8 @@ var width=500,
 							if(d3.select(this).attr("id")=="台湾"){
 								alert("数据库未提供准确的省市分布数据");
 							}
-						if(d3.select(this).attr("id")=="江西"){
-							yalias=100;
-							}
-						if(d3.select(this).attr("id")=="黑龙江"){
-								yalias=200;
+							if(d3.select(this).attr("id")=="港澳"){
+								alert("数据库未提供准确的省市分布数据");
 							}
 							if(d3.select(this).attr("id")=="青海"){
 								xalias=300;
@@ -321,6 +437,10 @@ var width=500,
 							if(d3.select(this).attr("id")=="重庆"){
 								xalias=200;
 							}
+							if(d3.select(this).attr("id")=="新疆"){
+								yalias=190;
+							}
+						bling("c"+d3.select(this).attr("id"));
 						var pname=getPinyin(d3.select(this).attr("id"));
 						var chinese=d3.select(this).attr("id");
 						var path="./data/local/"+pname+".json";
@@ -355,16 +475,10 @@ var width=500,
 									.attr("class","pointer")
 									.attr("fill","white")
 									.attr("x",20)
-									.attr("y",function(d){return d.position*barSpacing+barHeight*(2/3)})
+									.attr("y",function(d){return d.position*barSpacing+barHeight*(2/3)+2})
                   .text(function(d){
-										var text="";
-										if(d.pro=="钓鱼岛"||d.pro=="台湾"){
-											text=parseInt(parseInt(d.position)+1)+" "+d.pro+"  "+(d.tcargo+"").substr(0,5);
-											}
-											else{
-											text=parseInt(parseInt(d.position)+1)+" "+d.pro+"  "+(d.tcargo+"").substr(0,5);
-											}
-										return text;
+										  var text=parseInt(parseInt(d.position)+1)+" "+d.pro+"  "+d.tcargo.toFixed(2);
+										  return text;
 										})
 									.on('click',function(d){
 											//redraw map in the left bottom
@@ -381,8 +495,9 @@ var width=500,
 													alert("数据库未提供准确的省市分布数据");
 													return ;
 												}
-											if(d3.select(this).attr("province")=="江西"){
-												yalias=100;
+												if(d3.select(this).attr("province")=="港澳"){
+													alert("数据库未提供准确的省市分布数据");
+													return ;
 												}
 											if(d3.select(this).attr("province")=="黑龙江"){
 													yalias=200;
@@ -393,6 +508,10 @@ var width=500,
 												if(d3.select(this).attr("province")=="重庆"){
 													xalias=200;
 												}
+												if(d3.select(this).attr("province")=="甘肃"){
+												xalias=320;
+												}
+											bling("c"+d3.select(this).attr("province"));
 											var pname=getPinyin(d3.select(this).attr("province"));
 											var chinese=d3.select(this).attr("province");
 											var path="./data/local/"+pname+".json";
@@ -414,8 +533,6 @@ var width=500,
                     });
 										}
 var getCenterPoint=function(array){
-	//Get the center point of an array 
-	//decide the scale parameter dynamically
 	var center=[];
 	var sum1=0;
 	var sum2=0;
@@ -463,4 +580,140 @@ var getScaleTimes=function(array){
 	var time1=parseInt(500/disx);
 	var time2=parseInt(320/disy);
 	return  time1<time2?times*time1:times*time2;
+}
+
+var init=function(){
+		tg.append("text")
+			.attr("x",10)
+			.attr("y",30)
+			.style("font-size","18px")
+			.attr("stroke","white")
+			.attr("fill","white")
+			.text("售出省份:");
+			
+		tg.append("text")
+			.attr("id","opro")
+			.attr("x",95)
+			.attr("y",30)
+			.style("font-size","18px")
+			.attr("stroke","white")
+			.attr("fill","white")
+			.text("");
+			
+	button.append("circle")
+				.attr("id","sh")
+				.attr("cx",400)
+				.attr("cy",30)
+				.attr("r",30)
+				.attr("fill","#7fcdbb")
+				.style("border-radius","100%");
+				
+	button.append("text")
+				.text("上海")
+				.attr("x",380)
+				.attr("y",35)
+				.style("font-size","20px")
+				.attr("fill","white");
+	  button.on('mouseover',function(){
+					d3.select("#sh").attr("r",35)
+													.attr("fill","#f03b20");
+				})
+				.on("mouseout",function(){
+				d3.select("#sh").attr("r",30)
+												.attr("fill","#7fcdbb")
+				})
+				.on("click",function(){
+					refreshMap("上海");
+					d3.select("#opro").text("上海");
+				});
+				
+			var item1=province.append("g")
+								.attr("stroke","white")
+								.attr("stroke-width",1)
+								.attr("id","noninput");
+			item1.append("rect")
+				  .attr("x",10)
+					.attr("y",50)
+					.attr("width",20)
+					.attr("height",10)          .attr("fill","#7bccc4");
+			item1.append("text")
+					.attr("x",50)
+					.attr("y",60)
+					.attr("stroke","black")
+					.attr("fill","black")
+					.text("none");
+					
+					
+		var item2=province.append("g")
+							.attr("stroke","white")
+							.attr("stroke-width",1)
+							.attr("id","noninput");
+		item2.append("rect")
+				.attr("x",10)
+				.attr("y",70)
+				.attr("width",20)
+				.attr("height",10)
+				.attr("fill","rgb(253,208,162)");
+		item2.append("text")
+				.attr("x",50)
+				.attr("y",80)
+				.attr("stroke","black")
+				.attr("fill","black")
+				.text("min");
+    var item3=province.append("g")
+									.attr("stroke","white")
+									.attr("stroke-width",1)
+									.attr("id","noninput");
+				item3.append("rect")
+						.attr("x",10)
+						.attr("y",90)
+						.attr("width",20)
+						.attr("height",10)
+						.attr("fill","rgb(217,72,1)");
+				item3.append("text")
+						.attr("x",50)
+						.attr("y",100)
+						.attr("stroke","black")
+						.attr("fill","black")
+						.text("max");
+					
+}
+var bling=function(itemid){
+// 半径由大变小，颜色变成纯蓝色
+console.log(itemid);
+var ocolor=d3.select("#"+itemid).attr("fill");
+var r=d3.select("#"+itemid).attr("r");
+console.log("R"+r);
+d3.select("#"+itemid)
+  .transition()
+	.duration(500)
+	.ease("linear")
+	.attr("r",1)
+	.attr("fill","red");
+
+	
+d3.select("#"+itemid)
+	.transition()
+	.delay(500)
+	.duration(800)
+	.ease("linear")
+	.attr("r",r)
+	.attr("fill",ocolor);	
+	
+	d3.select("#"+itemid)
+	  .transition()
+		.delay(1300)
+		.duration(500)
+		.ease("linear")
+		.attr("r",1)
+		.attr("fill","red");
+		
+		d3.select("#"+itemid)
+			.transition()
+			.delay(1800)
+			.duration(800)
+			.ease("linear")
+			.attr("r",r)
+			.attr("fill",ocolor);	
+	
 }

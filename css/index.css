@@ -1,50 +1,60 @@
 		body{
 			text-align: center;
-			background-color: #020814;
+			/* background-color: #020814; */
+			background-color: white;
 			overflow: hidden; 
 		}
-		.shanghai{
-			width: 50px;
-			height: 50px;
-			border-radius: 100%;
-			border: white 2px;
-			background-color: aquamarine;
-			position: fixed;
-			top:0px;
-			right:0px;
-			z-index: 100;
-			color: white;
-			line-height: 50px;
-			height: 50px;
-			cursor: pointer;
+		.total{
+			display:flex;
+			background-color: white;
 		}
-		.shanghai:hover{
-			background-color: darkorange;
-			font-size: 20px;
-			font-weight: 300;
-			border-width: 5px;
-			border-color: aqua;
+		.data{
+		   margin:10px;
 		}
 		.fxmap{
-			width: 900px;
-			height: 700px;
-			position: fixed;
-			top:0px;
-			right: 50px;
+			margin:10px;
+			width: 850px;
+			/* height: 700px; */
+			border-radius: 3px;
+			/* position: fixed; */
 			cursor: pointer;
+			/* background-color: white; */
+			border: 1px solid rgb(2, 8, 20) ;
 		}
 		.prank{
-			position: fixed;
+			/* position: fixed; */
 			width: 500px;
-			height: 280px;
-			border-radius: 10px;
-		    top:20px;
+			height: 250px;
+			border-radius: 3px;
+		  top:20px;
 			left: 0px;
 			overflow-y: auto;
-			/* background-color: pink; */
+			border: rgb(2, 8, 20);
+			border-style:solid;
+			border-width: 1px;
 			margin-bottom: 10px;
 			padding: 0px;
 			text-align: left;
+			background-color:#e5e5e5;
+		}
+	  .title{
+		  margin:10px;
+			margin-top: 5px;
+			font-size: 20px;
+			/* color:dimgray;*/
+			color: black;
+			display: block;
+			position: fixed;
+			text-align: center;
+		}
+		.svg_box{
+			/* background-color:#e5e5e5; */
+			position: absolute;
+			margin-top: 40px;
+			width: 500px;
+			height: 210px;
+			margin-left: 0px;
+		  overflow-y: scroll;
 		}
 		.rect{
 			cursor: pointer;
@@ -52,22 +62,30 @@
 		.detail{
 			width: 500px;
 			height: 350px;
-			/* background-color: #5ea3a3; */
-			position: fixed;
-		  top:300px;
+			text-align: left;
+			border: rgb(2, 8, 20);
+			border-style:solid;
+			border-width: 1px;
 			left: 0px;
+			margin-top:10px;
 			border-radius: 3px;
 			cursor: pointer;
-			background-color: #0B032D;
+			background-color:#e5e5e5;
 			}
-
-    ::-webkit-scrollbar {
-        width: 0px; /*滚动条的宽度*/
-         height: 8px; /*滚动条的高度*/
-      }
-    .orange{
-		/* fill:orangered; */
-	  }
 	   .pointer{
 			 cursor: pointer;
 		 }
+    .rect{
+			 line-height: 18px;
+			 vertical-align: center;
+			 
+	}
+	.temrec{
+		border-radius: 5px;
+	}
+	.line{
+		z-index: 100 !important;
+	}
+	.pcircle ,.cirout{
+		z-index: 1000 !important;
+	}
